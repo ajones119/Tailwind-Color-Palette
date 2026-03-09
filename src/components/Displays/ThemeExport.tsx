@@ -1,7 +1,11 @@
 import { useState, useCallback } from "react";
 import { useColors } from "../../contexts/ColorsContext";
 import { SHADE_KEYS } from "../../constants/palette";
-import { formatColorForTheme, type ThemeExportFormat } from "../../lib/color";
+import {
+  formatColorForTheme,
+  setAlphaOnColor,
+  type ThemeExportFormat,
+} from "../../lib/color";
 
 const FONTS = [
   {
@@ -50,22 +54,25 @@ function buildTailwindV4ThemeCSS(
 }
 
 /**
- * Builds a shadcn/ui :root CSS variables block from the 4 color rows.
+ * Builds a shadcn/ui :root and .dark CSS variables block from the 4 color rows.
  * Maps palette shades to the standard shadcn variable names.
  */
 function buildShadcnCSS(
   colorRows: { title: string; colors: string[] }[],
   format: ThemeExportFormat,
 ): string {
-  const get = (title: string, index: number): string => {
+  const getRaw = (title: string, index: number): string => {
     const row = colorRows.find((r) => r.title === title);
-    const hex = row?.colors[index] ?? "#000000";
-    return formatColorForTheme(hex, format);
+    return row?.colors[index] ?? "#000000";
   };
+  const get = (title: string, index: number): string =>
+    formatColorForTheme(getRaw(title, index), format);
+  const getWithAlpha = (title: string, index: number, alphaPercent: number) =>
+    formatColorForTheme(setAlphaOnColor(getRaw(title, index), alphaPercent), format);
 
   // Index reference: 0=50, 1=100, 2=200, 3=300, 4=400, 5=500,
   //                  6=600, 7=700, 8=800, 9=900, 10=950
-  const vars: [string, string][] = [
+  const lightVars: [string, string][] = [
     ["--background", get("Neutral", 0)],
     ["--foreground", get("Neutral", 10)],
     ["--card", get("Neutral", 0)],
@@ -85,13 +92,69 @@ function buildShadcnCSS(
     ["--border", get("Neutral", 2)],
     ["--input", get("Neutral", 2)],
     ["--ring", get("Primary", 5)],
+    ["--chart-1", get("Primary", 0)],
+    ["--chart-2", get("Primary", 2)],
+    ["--chart-3", get("Primary", 4)],
+    ["--chart-4", get("Primary", 6)],
+    ["--chart-5", get("Primary", 9)],
+    ["--radius", "0.625rem"],
+    ["--sidebar", get("Neutral", 0)],
+    ["--sidebar-foreground", get("Neutral", 10)],
+    ["--sidebar-primary", get("Primary", 5)],
+    ["--sidebar-primary-foreground", get("Primary", 0)],
+    ["--sidebar-accent", get("Neutral", 1)],
+    ["--sidebar-accent-foreground", get("Neutral", 10)],
+    ["--sidebar-border", get("Neutral", 2)],
+    ["--sidebar-ring", get("Primary", 5)],
   ];
 
-  const lines: string[] = ["/* shadcn/ui variables */", ":root {"];
-  for (const [name, value] of vars) {
-    lines.push(`  ${name}: ${value};`);
-  }
-  lines.push("}");
+  // Dark mode: inverted roles, light text on dark bg, subtle borders via alpha
+  const darkVars: [string, string][] = [
+    ["--background", get("Neutral", 10)],
+    ["--foreground", get("Neutral", 0)],
+    ["--card", get("Neutral", 9)],
+    ["--card-foreground", get("Neutral", 0)],
+    ["--popover", get("Neutral", 9)],
+    ["--popover-foreground", get("Neutral", 0)],
+    ["--primary", get("Neutral", 0)],
+    ["--primary-foreground", get("Neutral", 10)],
+    ["--secondary", get("Neutral", 8)],
+    ["--secondary-foreground", get("Neutral", 0)],
+    ["--muted", get("Neutral", 8)],
+    ["--muted-foreground", get("Neutral", 5)],
+    ["--accent", get("Neutral", 7)],
+    ["--accent-foreground", get("Neutral", 0)],
+    ["--destructive", get("Tertiary", 5)],
+    ["--destructive-foreground", get("Tertiary", 0)],
+    ["--border", getWithAlpha("Neutral", 0, 10)],
+    ["--input", getWithAlpha("Neutral", 0, 15)],
+    ["--ring", get("Neutral", 9)],
+    ["--chart-1", get("Primary", 0)],
+    ["--chart-2", get("Primary", 2)],
+    ["--chart-3", get("Primary", 4)],
+    ["--chart-4", get("Primary", 6)],
+    ["--chart-5", get("Primary", 9)],
+    ["--radius", "0.625rem"],
+    ["--sidebar", get("Neutral", 9)],
+    ["--sidebar-foreground", get("Neutral", 0)],
+    ["--sidebar-primary", get("Primary", 4)],
+    ["--sidebar-primary-foreground", get("Neutral", 0)],
+    ["--sidebar-accent", get("Neutral", 8)],
+    ["--sidebar-accent-foreground", get("Neutral", 0)],
+    ["--sidebar-border", getWithAlpha("Neutral", 0, 10)],
+    ["--sidebar-ring", get("Neutral", 9)],
+  ];
+
+  const lines: string[] = [
+    "/* shadcn/ui variables */",
+    ":root {",
+    ...lightVars.map(([name, value]) => `  ${name}: ${value};`),
+    "}",
+    "",
+    ".dark {",
+    ...darkVars.map(([name, value]) => `  ${name}: ${value};`),
+    "}",
+  ];
   return lines.join("\n");
 }
 
