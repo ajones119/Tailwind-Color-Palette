@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  /* Title / display: Space Grotesk */
+  --font-title: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  /* Body: DM Sans */
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  /* Monospace: Fira Code */
+  --font-mono: "Fira Code", ui-monospace, monospace;
+}
+
+:root {
+  isolation: isolate;
+  font-family: var(--font-body);
+}
