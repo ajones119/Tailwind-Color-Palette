@@ -41,7 +41,7 @@ const ColorSquare = memo(
       <Tooltip.Root open={hoverOpen || copied} onOpenChange={setHoverOpen}>
         <Tooltip.Trigger
           data-is-root-color={isRootColor}
-          className="relative block size-20 lg:size-full aspect-square rounded-sm overflow-hidden cursor-pointer border border-neutral-300 shrink-0 transition-transform duration-300 hover:scale-105"
+          className="relative block size-20 lg:size-full aspect-square rounded-sm overflow-hidden cursor-pointer shrink-0 transition-transform duration-300 hover:scale-105 shadow-md shadow-neutral-200"
           onClick={handleClick}
           delay={0}
         >

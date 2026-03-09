@@ -31,7 +31,7 @@ export default function MockCard() {
 
   return (
     <div
-      className="rounded-xl p-6 font-sans border relative overflow-hidden"
+      className="rounded-xl p-6 font-sans border relative overflow-hidden shadow-md shadow-neutral-100"
       style={{ backgroundColor: neutral[0], borderColor: neutral[2] }}
     >
       {/* Topography pattern — SVG used as mask so the line color is palette-driven */}

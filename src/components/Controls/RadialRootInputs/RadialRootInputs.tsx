@@ -351,7 +351,7 @@ export const RadialRootInputs = () => {
           <div
             ref={pieBackground}
             id="gradient-background"
-            className="aspect-square inset-0 rounded-full pointer-events-none"
+            className="aspect-square inset-0 rounded-full pointer-events-none drop-shadow-lg shadow-neutral-100"
             style={{
               background: `conic-gradient(from 90deg, hsl(0,${saturation}%,${lightness}%) 0deg, hsl(60,${saturation}%,${lightness}%) 60deg, hsl(120,${saturation}%,${lightness}%) 120deg, hsl(180,${saturation}%,${lightness}%) 180deg, hsl(240,${saturation}%,${lightness}%) 240deg, hsl(300,${saturation}%,${lightness}%) 300deg, hsl(360,${saturation}%,${lightness}%) 360deg)`,
             }}

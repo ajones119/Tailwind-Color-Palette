@@ -15,7 +15,7 @@ const ColorRow = ({ title }: ColorRowProps) => {
     <div className="lg:pt-4">
       <div className="flex flex-col gap-2">
         <h2 className="text-lg font-bold lg:hidden font-body">
-          {title}
+            {title}
           {colorName ? ` (${colorName})` : null}
         </h2>
       </div>

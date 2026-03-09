@@ -1,0 +1,10 @@
+---
+scope: project
+alwaysApply: true
+---
+
+# Code Style
+
+- Use TypeScript strict mode
+- Prefer named exports over default exports
+- Write tests for all new functions

@@ -1,10 +1,10 @@
 import MockCard from "./MockCards/MockCard";
 import MockBarChartCard from "./MockCards/MockBarChartCard";
-//import MockLineChartCard from "./MockCards/MockLineChartCard";
+import MockLineChartCard from "./MockCards/MockLineChartCard";
 import MockPieChartCard from "./MockCards/MockPieChartCard";
 import MockImageCard from "./MockCards/MockImageCard";
 import MockAvatarCard from "./MockCards/MockAvatarCard";
-//import MockHeroCard from "./MockCards/MockHeroCard";
+import MockHeroCard from "./MockCards/MockHeroCard";
 //import MockSingleImageCard from "./MockCards/MockSingleImageCard";
 //import MockImageListCard from "./MockCards/MockImageListCard";
 //import MockWideCard from "./MockCards/MockWideCard";
@@ -24,6 +24,8 @@ export default function CardExamplesSection() {
         <MockBarChartCard />
         <MockImageCard />
         <MockPieChartCard />
+        <MockLineChartCard />
+        <MockHeroCard />
       </div>
     </section>
   );
