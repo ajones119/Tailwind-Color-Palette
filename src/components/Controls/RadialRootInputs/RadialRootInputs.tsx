@@ -16,10 +16,22 @@ import {
 } from "../../../lib/color";
 import HarmonyInput from "../HarmonyInput/HarmonyInput";
 import { useResizeObserver } from "usehooks-ts";
+import { motion } from "framer-motion";
 
 type RowKey = "Primary" | "Secondary" | "Tertiary";
 
 const DRAG_UPDATE_THRESHOLD_PX = 4;
+
+const CHIP_ANIMATION_CONFIG = {
+  scale: 1.1,
+  transition: { type: "spring" as const, stiffness: 150, damping: 10 },
+};
+
+const CHIP_HOVER_TAP_ANIMATION = {
+  whileHover: { scale: CHIP_ANIMATION_CONFIG.scale },
+  whileTap: { scale: CHIP_ANIMATION_CONFIG.scale },
+  transition: CHIP_ANIMATION_CONFIG.transition,
+};
 
 export const RadialRootInputs = () => {
   const {
@@ -65,6 +77,7 @@ export const RadialRootInputs = () => {
 
   const pieBackground = useRef<HTMLDivElement>(null);
   const primaryIndicator = useRef<HTMLDivElement>(null);
+  const primaryIndicatorChip = useRef<HTMLDivElement>(null);
   const secondaryIndicator = useRef<HTMLDivElement>(null);
   const tertiaryIndicator = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -230,8 +243,8 @@ export const RadialRootInputs = () => {
       syncIndicatorPosition(secondaryIndicator, hueRef.current.Secondary);
       syncIndicatorPosition(tertiaryIndicator, hueRef.current.Tertiary);
 
-      if (primaryIndicator.current) {
-        primaryIndicator.current.style.background = `hsl(${hueRef.current.Primary}, ${slRef.current.s}%, ${slRef.current.l}%)`;
+      if (primaryIndicatorChip.current) {
+        primaryIndicatorChip.current.style.background = `hsl(${hueRef.current.Primary}, ${slRef.current.s}%, ${slRef.current.l}%)`;
       }
     },
     [syncIndicatorPosition, harmonyMethod],
@@ -360,78 +373,97 @@ export const RadialRootInputs = () => {
           <div
             ref={primaryIndicator}
             id="primary-color-value-chip"
-            className="size-8 absolute flex items-center justify-center rounded-full cursor-grab active:cursor-grabbing touch-none select-none border border-white shadow-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-1"
-            style={{
-              background: `hsl(${hue.Primary}, ${saturation}%, ${lightness}%)`,
-              borderColor: getTextColorOnBackground(
-                baseColorRow?.rootColor ?? "#000000",
-              ),
-              color: getTextColorOnBackground(
-                baseColorRow?.rootColor ?? "#000000",
-              ),
-            }}
-            role="slider"
-            aria-label="Primary hue"
-            aria-valuemin={0}
-            aria-valuemax={360}
-            aria-valuenow={Math.round(hue.Primary)}
-            tabIndex={0}
-            onPointerDown={(e) => handlePointerDown(e, "Primary")}
-            onPointerMove={(e) => handlePointerMove(e, "Primary")}
-            onPointerUp={(e) => handlePointerUp(e, "Primary")}
-            onPointerCancel={(e) => handlePointerUp(e, "Primary")}
+            className="absolute flex items-center justify-center pointer-events-none"
+            style={{ transform: "translate(-50%, -50%)" }}
           >
-            1
+            <motion.div
+              ref={primaryIndicatorChip}
+              className="size-8 flex items-center justify-center rounded-full cursor-grab active:cursor-grabbing touch-none select-none border border-white shadow-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-1 pointer-events-auto"
+              style={{
+                background: `hsl(${hue.Primary}, ${saturation}%, ${lightness}%)`,
+                borderColor: getTextColorOnBackground(
+                  baseColorRow?.rootColor ?? "#000000",
+                ),
+                color: getTextColorOnBackground(
+                  baseColorRow?.rootColor ?? "#000000",
+                ),
+              }}
+              role="slider"
+              aria-label="Primary hue"
+              aria-valuemin={0}
+              aria-valuemax={360}
+              aria-valuenow={Math.round(hue.Primary)}
+              tabIndex={0}
+              onPointerDown={(e) => handlePointerDown(e, "Primary")}
+              onPointerMove={(e) => handlePointerMove(e, "Primary")}
+              onPointerUp={(e) => handlePointerUp(e, "Primary")}
+              onPointerCancel={(e) => handlePointerUp(e, "Primary")}
+              {...CHIP_HOVER_TAP_ANIMATION}
+            >
+              1
+            </motion.div>
           </div>
           <div
             ref={secondaryIndicator}
             id="secondary-color-value-chip"
-            className="size-8 absolute flex items-center justify-center rounded-full cursor-grab active:cursor-grabbing touch-none select-none border border-neutral-300 shadow-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-1"
-            style={{
-              background: "transparent",
-              borderColor: getTextColorOnBackground(
-                secondaryColorRow?.rootColor ?? "#000000",
-              ),
-              color: getTextColorOnBackground(
-                secondaryColorRow?.rootColor ?? "#000000",
-              ),
-            }}
-            role="slider"
-            aria-label="Secondary hue"
-            aria-valuemin={0}
-            aria-valuemax={360}
-            aria-valuenow={Math.round(hue.Secondary)}
-            onPointerDown={(e) => handlePointerDown(e, "Secondary")}
-            onPointerMove={(e) => handlePointerMove(e, "Secondary")}
-            onPointerUp={(e) => handlePointerUp(e, "Secondary")}
-            onPointerCancel={(e) => handlePointerUp(e, "Secondary")}
+            className="absolute flex items-center justify-center pointer-events-none"
+            style={{ transform: "translate(-50%, -50%)" }}
           >
-            2
+            <motion.div
+              className="size-8 flex items-center justify-center rounded-full cursor-grab active:cursor-grabbing touch-none select-none border border-neutral-300 shadow-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-1 pointer-events-auto"
+              style={{
+                background: "transparent",
+                borderColor: getTextColorOnBackground(
+                  secondaryColorRow?.rootColor ?? "#000000",
+                ),
+                color: getTextColorOnBackground(
+                  secondaryColorRow?.rootColor ?? "#000000",
+                ),
+              }}
+              role="slider"
+              aria-label="Secondary hue"
+              aria-valuemin={0}
+              aria-valuemax={360}
+              aria-valuenow={Math.round(hue.Secondary)}
+              onPointerDown={(e) => handlePointerDown(e, "Secondary")}
+              onPointerMove={(e) => handlePointerMove(e, "Secondary")}
+              onPointerUp={(e) => handlePointerUp(e, "Secondary")}
+              onPointerCancel={(e) => handlePointerUp(e, "Secondary")}
+              {...CHIP_HOVER_TAP_ANIMATION}
+            >
+              2
+            </motion.div>
           </div>
           <div
             ref={tertiaryIndicator}
             id="tertiary-color-value-chip"
-            className="size-8 absolute flex items-center justify-center rounded-full cursor-grab active:cursor-grabbing touch-none select-none border border-neutral-300 shadow-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-1"
-            style={{
-              background: "transparent",
-              borderColor: getTextColorOnBackground(
-                tertiaryColorRow?.rootColor ?? "#000000",
-              ),
-              color: getTextColorOnBackground(
-                tertiaryColorRow?.rootColor ?? "#000000",
-              ),
-            }}
-            role="slider"
-            aria-label="Tertiary hue"
-            aria-valuemin={0}
-            aria-valuemax={360}
-            aria-valuenow={Math.round(hue.Tertiary)}
-            onPointerDown={(e) => handlePointerDown(e, "Tertiary")}
-            onPointerMove={(e) => handlePointerMove(e, "Tertiary")}
-            onPointerUp={(e) => handlePointerUp(e, "Tertiary")}
-            onPointerCancel={(e) => handlePointerUp(e, "Tertiary")}
+            className="absolute flex items-center justify-center pointer-events-none"
+            style={{ transform: "translate(-50%, -50%)" }}
           >
-            3
+            <motion.div
+              className="size-8 flex items-center justify-center rounded-full cursor-grab active:cursor-grabbing touch-none select-none border border-neutral-300 shadow-md outline-none focus-visible:ring-2 focus-visible:ring-neutral-500 focus-visible:ring-offset-1 pointer-events-auto"
+              style={{
+                background: "transparent",
+                borderColor: getTextColorOnBackground(
+                  tertiaryColorRow?.rootColor ?? "#000000",
+                ),
+                color: getTextColorOnBackground(
+                  tertiaryColorRow?.rootColor ?? "#000000",
+                ),
+              }}
+              role="slider"
+              aria-label="Tertiary hue"
+              aria-valuemin={0}
+              aria-valuemax={360}
+              aria-valuenow={Math.round(hue.Tertiary)}
+              onPointerDown={(e) => handlePointerDown(e, "Tertiary")}
+              onPointerMove={(e) => handlePointerMove(e, "Tertiary")}
+              onPointerUp={(e) => handlePointerUp(e, "Tertiary")}
+              onPointerCancel={(e) => handlePointerUp(e, "Tertiary")}
+              {...CHIP_HOVER_TAP_ANIMATION}
+            >
+              3
+            </motion.div>
           </div>
         </div>
       </div>
