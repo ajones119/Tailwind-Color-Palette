@@ -355,7 +355,7 @@ export const RadialRootInputs = () => {
       <div className="flex flex-col gap-1.5 row-span-4">
         <div
           id="hue-slider"
-          className="w-full rounded-full bg-neutral-200 relative touch-none select-none"
+          className="w-full rounded-full bg-neutral-200 relative select-none"
         >
           <div
             ref={pieBackground}
