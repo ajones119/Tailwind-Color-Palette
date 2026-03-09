@@ -75,7 +75,7 @@ export const RadialRootInputs = () => {
   const lastPushedSL = useRef<{ s: number; l: number } | null>(null);
 
   const { width, height } = useResizeObserver({
-    ref: pieBackground,
+    ref: pieBackground as any,
     box: "border-box",
   });
 

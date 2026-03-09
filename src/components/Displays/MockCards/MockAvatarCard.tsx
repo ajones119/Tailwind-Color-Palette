@@ -4,32 +4,6 @@ import Avatar1 from "../../../assets/cesar-rincon-XHVpWcr5grQ-unsplash.jpg";
 import Avatar2 from "../../../assets/philip-martin-5aGUyCW_PJw-unsplash-avatar.jpg";
 import Avatar3 from "../../../assets/stefan-stefancik-QXevDflbl8A-unsplash-avatar.jpg";
 
-const avatars = [
-  { src: Avatar1, size: 44, rotate: -12, y: 4 },
-  { src: Avatar2, size: 64, rotate: 6, y: -8 },
-  { src: Avatar3, size: 52, rotate: -6, y: 2 },
-];
-/*
-{avatars.map(({ src, size, rotate, y }, i) => (
-          <div
-            key={i}
-            className="rounded-full overflow-hidden shrink-0"
-            style={{
-              width: size,
-              height: size,
-              marginLeft: i === 0 ? 0 : -18,
-              marginTop: y,
-              transform: `rotate(${rotate}deg)`,
-              border: `3px solid ${primary[0]}`,
-              boxShadow: `0 6px 16px rgba(0,0,0,0.12), 0 0 0 3px ${primary[i + 3] ?? primary[4]}`,
-              zIndex: i,
-            }}
-          >
-            <img src={src} alt="" className="w-full h-full object-cover" />
-          </div>
-        ))}
-*/
-
 export default function MockAvatarCard() {
   const { colorRows } = useColors();
 

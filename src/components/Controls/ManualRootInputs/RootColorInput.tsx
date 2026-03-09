@@ -1,6 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import { useDebounceCallback } from "usehooks-ts";
-import { DEBOUNCE_MS } from "../../../constants/debounce";
 import {
   parseColorToHex,
   hexToHsl,

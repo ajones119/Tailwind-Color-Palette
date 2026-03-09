@@ -30,7 +30,6 @@ export default function MockBarChartCard() {
   const primary = colorRows.find((r) => r.title === "Primary")?.colors ?? [];
   const secondary =
     colorRows.find((r) => r.title === "Secondary")?.colors ?? [];
-  const tertiary = colorRows.find((r) => r.title === "Tertiary")?.colors ?? [];
 
   return (
     <div

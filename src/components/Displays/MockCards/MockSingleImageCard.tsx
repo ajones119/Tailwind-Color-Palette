@@ -5,7 +5,6 @@ export default function MockSingleImageCard() {
 
   const neutral = colorRows.find((r) => r.title === "Neutral")?.colors ?? [];
   const primary = colorRows.find((r) => r.title === "Primary")?.colors ?? [];
-  const tertiary = colorRows.find((r) => r.title === "Tertiary")?.colors ?? [];
 
   return (
     <div
