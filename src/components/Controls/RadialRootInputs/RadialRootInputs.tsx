@@ -367,7 +367,7 @@ export const RadialRootInputs = () => {
           />
           <div
             id="inner-piece"
-            className="size-9/12 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+            className="size-9/12 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 rounded-full"
             style={{ background: "white" }}
           />
           <div
