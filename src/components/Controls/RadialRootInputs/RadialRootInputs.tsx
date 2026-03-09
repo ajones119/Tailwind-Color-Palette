@@ -80,10 +80,6 @@ export const RadialRootInputs = () => {
   });
 
   useEffect(() => {
-    console.log(width, height);
-  }, [width, height]);
-
-  useEffect(() => {
     slRef.current = { s: saturation, l: lightness };
   }, [saturation, lightness]);
   useEffect(() => {
@@ -193,8 +189,6 @@ export const RadialRootInputs = () => {
 
   useLayoutEffect(() => {
     if (!pieBackground.current || !width || !height) return;
-
-    console.log("SYNC");
     syncIndicatorPosition(primaryIndicator, hue.Primary);
     syncIndicatorPosition(secondaryIndicator, hue.Secondary);
     syncIndicatorPosition(tertiaryIndicator, hue.Tertiary);

@@ -13,7 +13,6 @@ export default function MockHeroCard() {
       className="rounded-xl p-6 font-sans border col-span-2 flex flex-col md:flex-row gap-8 items-center shadow-md shadow-neutral-600"
       style={{ backgroundColor: primary[9], borderColor: primary[8] }}
     >
-      {/* Text side */}
       <div className="flex-1 space-y-4">
         <span
           className="inline-block text-xs font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full"
@@ -49,7 +48,6 @@ export default function MockHeroCard() {
         </div>
       </div>
 
-      {/* Image placeholder side */}
       <div
         className="md:w-52 md:h-40 w-full h-32 rounded-lg shrink-0 flex items-center justify-center"
         style={{ backgroundColor: primary[8] }}

@@ -163,6 +163,7 @@ export const ColorsProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   /** Set Neutral row from Primary: same hue and lightness, 10% saturation; regenerates root and shades. */
+  /** Set Neutral row from Primary: same hue and lightness, 10% saturation; regenerates root and shades. */
   const alignNeutralWithPrimary = () => {
     setColorRows((prev) => {
       const primary = prev.find((r) => r.title === "Primary");
@@ -186,7 +187,7 @@ export const ColorsProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  /** Apply new saturation and lightness to all non-neutral rows (keep each row's hue), regenerate their shades, then align Neutral to Primary. */
+  /** Apply new saturation and lightness to all non-neutral rows (keep each row's hue), regenerate shades, then align Neutral to Primary. */
   const setNonNeutralSaturationLightness = (
     saturation: number,
     lightness: number,

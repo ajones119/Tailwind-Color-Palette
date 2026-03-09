@@ -25,14 +25,12 @@ function buildTailwindV4ThemeCSS(
   format: ThemeExportFormat,
 ): string {
   const lines: string[] = ["@theme {"];
-
   // Fonts
   lines.push("  /* Fonts */");
   for (const font of FONTS) {
     lines.push(`  ${font.var}: ${font.value};`);
   }
   lines.push("");
-
   // Color scales
   for (const row of colorRows) {
     const name = row.title.toLowerCase();

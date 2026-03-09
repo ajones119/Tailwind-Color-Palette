@@ -18,7 +18,6 @@ export default function MockAvatarCard() {
       className="relative rounded-xl font-sans border overflow-hidden shadow-md shadow-neutral-200"
       style={{ backgroundColor: primary[0], borderColor: neutral[2] }}
     >
-      {/* Topography pattern */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{

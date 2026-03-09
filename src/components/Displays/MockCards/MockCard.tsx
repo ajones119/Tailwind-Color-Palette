@@ -13,7 +13,6 @@ export default function MockCard() {
       className="rounded-xl p-6 font-sans border relative overflow-hidden shadow-md shadow-neutral-200"
       style={{ backgroundColor: neutral[0], borderColor: neutral[2] }}
     >
-      {/* Topography pattern — SVG used as mask so the line color is palette-driven */}
       <div
         className="absolute inset-0 pointer-events-none z-0 hidden"
         style={{
@@ -28,7 +27,6 @@ export default function MockCard() {
         }}
       />
       <div className="relative z-10">
-        {/* Badge — primary-100 bg, primary-700 text */}
         <span
           className="inline-block text-xs font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full mb-3 font-body"
           style={{ backgroundColor: primary[1], color: primary[7] }}
@@ -36,7 +34,6 @@ export default function MockCard() {
           New
         </span>
 
-        {/* Title — neutral-900 */}
         <div
           className="text-lg font-bold mb-1 font-title"
           style={{ color: neutral[9] }}
@@ -44,7 +41,6 @@ export default function MockCard() {
           See Your Colors
         </div>
 
-        {/* Description — neutral-600 */}
         <div
           className="text-sm leading-relaxed mb-5 font-body"
           style={{ color: neutral[6] }}
@@ -53,12 +49,9 @@ export default function MockCard() {
           cursus rutrum interdum. Phasellus sollicitudin feugiat sollicitudin.
         </div>
 
-        {/* Divider — neutral-200 */}
         <div className="mb-5 border-t" style={{ borderColor: neutral[2] }} />
 
-        {/* Actions */}
         <div className="flex flex-col gap-2">
-          {/* Primary button — primary-500 bg, white text */}
           <button
             className="px-5 py-2 rounded-lg text-sm font-semibold font-body text-white cursor-pointer"
             style={{ backgroundColor: primary[5] }}
@@ -66,7 +59,6 @@ export default function MockCard() {
             Get started
           </button>
 
-          {/* Ghost button — primary-600 text, primary-300 border */}
           <button
             className="px-5 py-2 rounded-lg text-sm font-semibold font-body cursor-pointer border bg-transparent"
             style={{ color: primary[6], borderColor: primary[3] }}

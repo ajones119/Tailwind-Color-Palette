@@ -8,10 +8,8 @@ const HARMONY_METHOD_OPTIONS: HarmonyMethod[] = [
   "analogous",
   "complementary",
   "triadic",
-  //'square',
   "rectangle",
   "split-complementary",
-  //'split-triadic',
   "tetradic",
 ];
 

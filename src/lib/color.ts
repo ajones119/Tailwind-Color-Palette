@@ -281,11 +281,10 @@ export function generateShadesFromBaseColor(
   const base = new Color(baseColor);
   const baseAlpha = base.alpha ?? 1;
 
-  // Convert to HSL to extract the base hue, saturation, and lightness.
   const hsl = base.to("hsl");
-  const hue = hsl.get("h") || 0; // 0–360 degrees, falls back to 0 for achromatic greys
-  const saturation = hsl.get("s") || 0; // 0–100%
-  const baseLightness = hsl.get("l"); // 0–100%, used to pick which slot the base belongs in
+  const hue = hsl.get("h") || 0;
+  const saturation = hsl.get("s") || 0;
+  const baseLightness = hsl.get("l");
 
   const adjustments = SHADE_ADJUSTMENTS.slice(0, numberOfShades);
 
@@ -297,10 +296,9 @@ export function generateShadesFromBaseColor(
           .padStart(2, "0")
       : c.toString({ format: "hex" });
 
-  // Build each shade by applying target lightness + hue and saturation nudges.
   const shades = adjustments.map(({ targetL, deltaH, deltaS }) => {
-    const adjustedH = (hue + deltaH + 360) % 360; // wrap hue to stay in 0–360
-    const adjustedS = Math.max(0, Math.min(100, saturation + deltaS)); // clamp S to 0–100
+    const adjustedH = (hue + deltaH + 360) % 360;
+    const adjustedS = Math.max(0, Math.min(100, saturation + deltaS));
     const shade = new Color("hsl", [adjustedH, adjustedS, targetL], baseAlpha);
     return toHex(shade);
   });

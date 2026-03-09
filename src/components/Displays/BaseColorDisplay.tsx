@@ -52,7 +52,7 @@ export const BaseColorDisplay = () => {
                 onClick={() => handleClick(color)}
               >
                 <div
-                  className="w-full h-32 md:h-24 lg:h-16 flex items-center justify-center line-clamp-1 transition-colors duration-300"
+                  className="w-full h-32 md:h-24 lg:h-16 flex items-center justify-center line-clamp-1 transition-colors duration-300 p-2 font-title"
                   style={{
                     background: color,
                     color: getTextColorOnBackground(color),
