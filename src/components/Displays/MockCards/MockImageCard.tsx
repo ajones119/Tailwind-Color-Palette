@@ -10,7 +10,7 @@ export default function MockImageCard() {
 
   return (
     <div
-      className="rounded-xl overflow-hidden border font-sans shadow-md shadow-neutral-100"
+      className="rounded-xl overflow-hidden border font-sans shadow-md shadow-neutral-200"
       style={{ backgroundColor: neutral[0], borderColor: neutral[2] }}
     >
       {/* Image placeholder */}

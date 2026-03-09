@@ -1,28 +1,7 @@
 import { useColors } from "../../../contexts/ColorsContext";
 import Topography from "../../../assets/topography.svg";
 
-/**
- * MockCard — a small UI card preview driven entirely by the palette context.
- *
- * Neutral shades are used for backgrounds, borders, and muted text.
- * Primary shades are used for interactive elements (button, badge, link).
- *
- * Colors are applied via inline style objects so they respond instantly
- * to palette changes without needing any CSS classes.
- *
- * Shade index reference (matches SHADE_KEYS: 50, 100, 200, … 950):
- *   0 = 50   (lightest)
- *   1 = 100
- *   2 = 200
- *   3 = 300
- *   4 = 400
- *   5 = 500
- *   6 = 600
- *   7 = 700
- *   8 = 800
- *   9 = 900
- *  10 = 950  (darkest)
- */
+
 export default function MockCard() {
   const { colorRows } = useColors();
 
@@ -31,7 +10,7 @@ export default function MockCard() {
 
   return (
     <div
-      className="rounded-xl p-6 font-sans border relative overflow-hidden shadow-md shadow-neutral-100"
+      className="rounded-xl p-6 font-sans border relative overflow-hidden shadow-md shadow-neutral-200"
       style={{ backgroundColor: neutral[0], borderColor: neutral[2] }}
     >
       {/* Topography pattern — SVG used as mask so the line color is palette-driven */}

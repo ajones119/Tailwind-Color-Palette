@@ -34,7 +34,7 @@ export default function MockBarChartCard() {
   return (
     <div
       ref={chartRef}
-      className="rounded-xl p-6 border shadow-md shadow-neutral-100"
+      className="rounded-xl p-6 border shadow-md shadow-neutral-200"
       style={{ backgroundColor: neutral[0], borderColor: neutral[2] }}
     >
       <div className="mb-1 text-lg font-bold" style={{ color: neutral[9] }}>

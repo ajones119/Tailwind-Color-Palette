@@ -5,9 +5,6 @@ import MockPieChartCard from "./MockCards/MockPieChartCard";
 import MockImageCard from "./MockCards/MockImageCard";
 import MockAvatarCard from "./MockCards/MockAvatarCard";
 import MockHeroCard from "./MockCards/MockHeroCard";
-//import MockSingleImageCard from "./MockCards/MockSingleImageCard";
-//import MockImageListCard from "./MockCards/MockImageListCard";
-//import MockWideCard from "./MockCards/MockWideCard";
 
 export default function CardExamplesSection() {
   return (
@@ -31,12 +28,3 @@ export default function CardExamplesSection() {
   );
 }
 
-/*
-<MockStatsCard />
-        <MockHeroCard />
-        <MockLineChartCard />
-        <MockPieChartCard />
-        <MockSingleImageCard />
-        <MockImageListCard />
-        <MockWideCard />
-*/

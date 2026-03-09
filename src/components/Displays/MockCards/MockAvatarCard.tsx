@@ -15,7 +15,7 @@ export default function MockAvatarCard() {
 
   return (
     <div
-      className="relative rounded-xl font-sans border overflow-hidden shadow-md shadow-neutral-100"
+      className="relative rounded-xl font-sans border overflow-hidden shadow-md shadow-neutral-200"
       style={{ backgroundColor: primary[0], borderColor: neutral[2] }}
     >
       {/* Topography pattern */}

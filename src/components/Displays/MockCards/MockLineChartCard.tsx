@@ -33,7 +33,7 @@ export default function MockLineChartCard() {
   return (
     <div
       ref={chartRef}
-      className="rounded-xl p-6 font-sans border"
+      className="rounded-xl p-6 font-sans border shadow-md shadow-neutral-200"
       style={{ backgroundColor: neutral[0], borderColor: neutral[2] }}
     >
       <div className="mb-1 text-lg font-bold" style={{ color: neutral[9] }}>

@@ -1,4 +1,5 @@
 import { useColors } from "../../../contexts/ColorsContext";
+import BirdImage from "../../../assets/dl314-lin-GOkl6DWghZw-unsplash (Small).jpg"
 
 export default function MockHeroCard() {
   const { colorRows } = useColors();
@@ -9,7 +10,7 @@ export default function MockHeroCard() {
 
   return (
     <div
-      className="rounded-xl p-8 font-sans border col-span-2 flex gap-8 items-center"
+      className="rounded-xl p-6 font-sans border col-span-2 flex flex-col md:flex-row gap-8 items-center shadow-md shadow-neutral-200"
       style={{ backgroundColor: primary[9], borderColor: primary[8] }}
     >
       {/* Text side */}
@@ -18,7 +19,7 @@ export default function MockHeroCard() {
           className="inline-block text-xs font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full"
           style={{ backgroundColor: tertiary[5], color: neutral[0] }}
         >
-          Now in beta
+          Featured
         </span>
 
         <div
@@ -29,8 +30,7 @@ export default function MockHeroCard() {
         </div>
 
         <div className="text-sm leading-relaxed" style={{ color: primary[3] }}>
-          Paste in any hex or color name and instantly generate a complete
-          11-step palette ready to drop into Tailwind, CSS variables, or Figma.
+          Generate a site ready Tailwind color palette from a single color
         </div>
 
         <div className="flex gap-3 pt-2">
@@ -38,30 +38,23 @@ export default function MockHeroCard() {
             className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer"
             style={{ backgroundColor: tertiary[5], color: neutral[0] }}
           >
-            Get started free
+            Tertiary
           </button>
           <button
             className="px-5 py-2 rounded-lg text-sm font-semibold cursor-pointer border bg-transparent"
             style={{ color: primary[2], borderColor: primary[7] }}
           >
-            See the docs
+            Primary Border
           </button>
         </div>
       </div>
 
       {/* Image placeholder side */}
       <div
-        className="w-52 h-40 rounded-lg shrink-0 flex items-center justify-center"
+        className="md:w-52 md:h-40 w-full h-32 rounded-lg shrink-0 flex items-center justify-center"
         style={{ backgroundColor: primary[8] }}
       >
-        <svg
-          className="w-10 h-10 opacity-30"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          style={{ color: primary[3] }}
-        >
-          <path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z" />
-        </svg>
+        <img src={BirdImage} alt="Bird" className="w-full h-full object-cover rounded-lg" />
       </div>
     </div>
   );

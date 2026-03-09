@@ -6,13 +6,13 @@ import { BaseColorDisplay } from "./components/Displays/BaseColorDisplay";
 
 function App() {
   return (
-    <div className="p-4 md:p-16 font-body">
+    <div className="p-4 xl:p-16 font-body">
       <div className="mt-8">
         <h1 className="text-4xl font-bold font-title">
           Tailwind Color Palette
         </h1>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] mt-12 lg:mt-0">
+      <div className="grid grid-cols-1 lg:grid-cols-[392px_1fr] mt-12 lg:mt-0">
         <div className="lg:my-24 mx-4">
           <div className="lg:sticky lg:top-8 pb-8 lg:p-4 lg:pb-8 lg:pr-8 lg:border-b-0 border-b lg:border-r border-solid border-neutral-400">
             <RootColors />

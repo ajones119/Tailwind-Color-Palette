@@ -6,7 +6,7 @@ export default function ColorRowsSection() {
 
   return (
     <section
-      className="my-2 space-y-4 max-w-5xl"
+      className="my-2 space-y-4 xl:max-w-5xl"
       aria-labelledby="color-rows-heading"
     >
       <h2
