@@ -1,11 +1,11 @@
-import { useColors } from '../../../contexts/ColorsContext'
+import { useColors } from "../../../contexts/ColorsContext";
 
 export default function MockHeroCard() {
-  const { colorRows } = useColors()
+  const { colorRows } = useColors();
 
-  const neutral = colorRows.find(r => r.title === 'Neutral')?.colors ?? []
-  const primary = colorRows.find(r => r.title === 'Primary')?.colors ?? []
-  const tertiary = colorRows.find(r => r.title === 'Tertiary')?.colors ?? []
+  const neutral = colorRows.find((r) => r.title === "Neutral")?.colors ?? [];
+  const primary = colorRows.find((r) => r.title === "Primary")?.colors ?? [];
+  const tertiary = colorRows.find((r) => r.title === "Tertiary")?.colors ?? [];
 
   return (
     <div
@@ -21,13 +21,16 @@ export default function MockHeroCard() {
           Now in beta
         </span>
 
-        <div className="text-2xl font-bold leading-snug" style={{ color: neutral[0] }}>
+        <div
+          className="text-2xl font-bold leading-snug"
+          style={{ color: neutral[0] }}
+        >
           Build beautiful UIs from a single color
         </div>
 
         <div className="text-sm leading-relaxed" style={{ color: primary[3] }}>
-          Paste in any hex or color name and instantly generate a complete 11-step palette
-          ready to drop into Tailwind, CSS variables, or Figma.
+          Paste in any hex or color name and instantly generate a complete
+          11-step palette ready to drop into Tailwind, CSS variables, or Figma.
         </div>
 
         <div className="flex gap-3 pt-2">
@@ -51,11 +54,15 @@ export default function MockHeroCard() {
         className="w-52 h-40 rounded-lg shrink-0 flex items-center justify-center"
         style={{ backgroundColor: primary[8] }}
       >
-        <svg className="w-10 h-10 opacity-30" viewBox="0 0 24 24" fill="currentColor"
-          style={{ color: primary[3] }}>
+        <svg
+          className="w-10 h-10 opacity-30"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          style={{ color: primary[3] }}
+        >
           <path d="M21 19V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2zM8.5 13.5l2.5 3 3.5-4.5 4.5 6H5l3.5-4.5z" />
         </svg>
       </div>
     </div>
-  )
+  );
 }

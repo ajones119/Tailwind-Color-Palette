@@ -1,75 +1,117 @@
-# React + TypeScript + Vite
+## Tailwind Color Palette
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive color palette designer for Tailwind CSS v4 and shadcn/ui.
 
-Currently, two official plugins are available:
+This app lets you:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Pick and harmonize 4 core colors**: `Primary`, `Secondary`, `Tertiary`, and `Neutral`
+- **Generate full 11-step Tailwind-style scales** for each color (50 → 950)
+- **Preview real UI usage** in example cards and charts
+- **Export ready-to-paste CSS**:
+  - A Tailwind v4 `@theme {}` block with `--color-{row}-{shade}` variables
+  - A `:root` block with shadcn/ui variables (background, foreground, muted, primary, etc.)
+  - Font variables for title, body, and mono text
 
-## React Compiler
+---
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Tech stack
 
-Note: This will impact Vite dev & build performances.
+- **React + TypeScript + Vite**
+- **Tailwind CSS v4 (@theme)** for design tokens
+- **shadcn/ui-style CSS tokens** via `:root` variables
+- **Recharts** for chart previews
+- **Prettier** for code formatting
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Getting started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+From the `ColorPaletteGenerator` directory:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install      # or pnpm install / yarn
+npm run dev      # or pnpm dev / yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then open the printed localhost URL in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Using the exported CSS
+
+1. Tune your colors and harmony using the controls on the left.
+2. Scroll to the **Export** section at the bottom.
+3. Choose your desired format (**Hex / HSL / RGBA**).
+4. Click **Copy CSS** and paste into your main stylesheet, for example:
+
+```css
+@import "tailwindcss";
+
+/* Paste exported @theme block and :root shadcn variables here */
 ```
+
+Tailwind will pick up the `@theme {}` variables, and your design system (including shadcn/ui) can consume the `:root` variables.
+
+---
+
+### Fonts
+
+The app exposes three font variables:
+
+```css
+--font-title: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+--font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+--font-mono: "Fira Code", ui-monospace, monospace;
+```
+
+In `src/index.css` the body is wired up with:
+
+```css
+:root {
+  font-family: var(--font-body);
+}
+```
+
+The UI uses:
+
+- `font-title` for headings
+- `font-body` for body text
+- `font-mono` for code / numeric details
+
+---
+
+### shadcn/ui variable mapping
+
+The export includes a `:root` block mapping your live palette into shadcn/ui-style tokens, for example:
+
+- `--background` / `--foreground` → `Neutral` scale (lightest / darkest)
+- `--primary` / `--primary-foreground` → `Primary` scale (500 / 50)
+- `--secondary`, `--accent`, `--muted`, `--destructive` → `Secondary`, `Tertiary`, and `Neutral` scales
+- `--border`, `--input`, `--ring` → `Neutral` / `Primary` scales
+
+So you can wire shadcn/ui to these variables without manual mapping every time.
+
+---
+
+### Formatting with Prettier
+
+Prettier is installed as a dev dependency in the repo.
+
+To format all files from the project root:
+
+```bash
+npx prettier . --write
+```
+
+The config lives in `.prettierrc` with:
+
+- single quotes
+- no semicolons
+- trailing commas where valid
+- `printWidth` 100
+
+---
+
+### License
+
+MIT
