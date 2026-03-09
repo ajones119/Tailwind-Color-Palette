@@ -10,7 +10,7 @@ export default function MockHeroCard() {
 
   return (
     <div
-      className="rounded-xl p-6 font-sans border col-span-2 flex flex-col md:flex-row gap-8 items-center shadow-md shadow-neutral-200"
+      className="rounded-xl p-6 font-sans border col-span-2 flex flex-col md:flex-row gap-8 items-center shadow-md shadow-neutral-600"
       style={{ backgroundColor: primary[9], borderColor: primary[8] }}
     >
       {/* Text side */}
